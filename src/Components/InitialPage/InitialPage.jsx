@@ -4,7 +4,7 @@ import {useState} from 'react';
 
 
 
-function Component() {
+function InitialPage() {
   const [quantPlayers, setquantPlayers] = useState(1);
   const [oneChecked, setOneChecked] = useState(true);
   const [twoChecked, setTwoChecked] = useState(false);
@@ -24,7 +24,7 @@ function Component() {
   return (
     <div className="container-initial-page">
       <div className="contents-initial-page">
-        <h1>CINTETRIS</h1>
+        <h1>CINTETRIX</h1>
         <img className="lego" src={Lego} alt="Peça de lego"/>
         <form className="form" action="">
           <div className="inputs-initial-page">
@@ -60,4 +60,4 @@ function Component() {
   );
 }
 
-export default Component;
+export default InitialPage;

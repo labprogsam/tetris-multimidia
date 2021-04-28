@@ -2,14 +2,10 @@ import './InitialPage.css';
 import Lego from '../../Images/whh_tetrisone.png'
 import {useState} from 'react';
 
-
-
-function InitialPage() {
+function InitialPage({ setStartGame, setPlayer1, setPlayer2, player1, player2 }) {
   const [quantPlayers, setquantPlayers] = useState(1);
   const [oneChecked, setOneChecked] = useState(true);
   const [twoChecked, setTwoChecked] = useState(false);
-  const [namePlayer1, setNamePlayer1] = useState("");
-  const [namePlayer2, setNamePlayer2] = useState("");
 
   const changeQuantPlayers = () => {
     if(oneChecked === true) {
@@ -33,11 +29,11 @@ function InitialPage() {
                 ? <label htmlFor="">Nome do jogador</label>
                 : <label htmlFor="">Nome do jogador 1</label>
               }
-              <input value={namePlayer1} onChange={(e) => setNamePlayer1(e.target.value)}/>
+              <input value={player1} onChange={(e) => setPlayer1(e.target.value)}/>
             </div>
             {quantPlayers === 2 && <div className="input">
               <label htmlFor="">Nome do jogador 2</label>
-              <input value={namePlayer2} onChange={(e) => setNamePlayer2(e.target.value)}/>
+              <input value={player2} onChange={(e) => setPlayer2(e.target.value)}/>
             </div>}
           </div>
           <div className="quant-players">
@@ -53,7 +49,7 @@ function InitialPage() {
               </div>
             </div>
           </div>
-          <button className="start-button">START</button>
+          <button onClick={() => setStartGame(true)} className="start-button">START</button>
         </form>
       </div>
     </div>

@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Component from './component';
+import PaginaInicial from './Components/InitialPage/InitialPage';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Component />
+    <PaginaInicial />
   </React.StrictMode>,
   document.getElementById('root')
 );

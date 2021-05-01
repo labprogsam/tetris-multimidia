@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'pixel';
+    src: url('../../font/Pixel-LCD-7.woff');
+}
+
+a {
+    text-decoration: none !important;
+    color: black !important;
+}
+
+.popup{
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    padding: 15px;
+    border: solid 1px #4c4d4f;
+    background: #DB00FF;
+    display: block ;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.close-btn{
+    display: flex;
+    color: white;
+    font-family: 'pixel';
+    justify-content: flex-end;
+}
+
+.column{
+    margin-top:90px;
+    display: flex;
+    flex-direction: column;
+}
+.option{
+    background: white;
+    width: 200px;
+    height: 30px;
+    border-radius: 30px !important ;
+    margin: auto;
+    border-color: solid 1px black;
+    cursor: pointer;
+    margin-bottom: 30px;     
+}
+.text-option{
+    font-family: 'pixel';
+    font-weight: 300;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 7px;
+}
+.title-text{
+    color: white;
+    text-align: center;
+    font-family: 'pixel';
+    font-size: 24px;
+}
+.title-x{
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-family: 'pixel';
+    cursor: pointer;
+    font-size: 20px;
+}

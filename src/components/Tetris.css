@@ -1,0 +1,34 @@
+.powers-multplayer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.powers-multplayer .power {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.powers-multplayer p {
+  margin: 0;
+  color: #DB00FF;
+  text-align: center;
+}
+.powers-multplayer .quant-power {
+  padding-right: 7px;
+  padding-bottom: 5px;
+}
+
+.powers-multplayer .power-key {
+  padding-top: 5px;
+}
+
+.powers-multplayer .image-power {
+  width: 100%;
+}
+
+.powers-multplayer .image-power img{
+  width: 100%;
+}

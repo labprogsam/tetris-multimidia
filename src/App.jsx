@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
   const [startGame, setStartGame] = useState(false);
+  const [velocity, setVelocity] = useState(800);
 
   const [powersStatusPlayer1, setPowersStatusPlayer1] = useState({
     blockRotate: false,
@@ -56,13 +57,13 @@ function App() {
     if (startGame) {
     // Reset everything
     setStage1(createStage());
-    setDropTime1(800);
+    setDropTime1(velocity);
     resetPlayer1();
     setGame1Over(false);
 
     // Reset everything
     setStage2(createStage());
-    setDropTime2(800);
+    setDropTime2(velocity);
     resetPlayer2();
     setGame2Over(false);
     }
@@ -128,8 +129,7 @@ function App() {
         powerBlockMove(powersStatusPlayer1, setPowersStatusPlayer1, powersQuantPlayer1, setPowersQuantPlayer1);
       } else if (keyCode === 74) { //Tecla J
         powerSpeedIncrease(powersStatusPlayer1, setPowersStatusPlayer1, powersQuantPlayer1, setPowersQuantPlayer1);
-      }
-      if (keyCode === 37 && !powersStatusPlayer1.blockMove) { //Tecla da seta para esquerda
+      } else if (keyCode === 37 && !powersStatusPlayer1.blockMove) { //Tecla da seta para esquerda
         movePlayer(-1, player2, stage2, updatePlayer2Pos);
       } else if (keyCode === 39 && !powersStatusPlayer1.blockMove) { //Tecla da seta para direita
         movePlayer(1, player2, stage2, updatePlayer2Pos);
@@ -149,12 +149,12 @@ function App() {
   const keyUp = ({ keyCode }) => {
     if (!game1Over) {
       if (keyCode === 40) {
-        setDropTime1(800);
+        setDropTime1(velocity);
       }
     }
     if (!game2Over) {
       if (keyCode === 83) {
-        setDropTime2(800);
+        setDropTime2(velocity);
       }
     }
   };
@@ -195,6 +195,7 @@ function App() {
           nick2={nick2}
           setNick1={setNick1}
           setNick2={setNick2}
+          setVelocity={setVelocity}
         />
       )}
     </div>  

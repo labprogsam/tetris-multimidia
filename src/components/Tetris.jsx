@@ -19,7 +19,7 @@ import Rotate from '../Images/powers/rotate.png';
 import LeftRight from '../Images/powers/left-right.png';
 
 
-function Tetris({ powersQuant, powersStatusOpponent, userName, currentPlayer, stage, drop, dropTime, gameOver }) {
+function Tetris({ powersQuant, powersStatusOpponent, userName, currentPlayer, stage, drop, dropTime, gameOver, score, rows, level }) {
 
   useInterval(() => {
     drop();
@@ -33,9 +33,9 @@ function Tetris({ powersQuant, powersStatusOpponent, userName, currentPlayer, st
           <Display gameOver={gameOver} text="Game Over" />
         ) : (
           <div>
-            <Display text="Pontuacao" />
-            <Display text="Linhas" />
-            <Display text="Velocidade" />
+            <Display text={`Pontuacao: ${score}`} />
+            <Display text={`Linhas: ${rows}`} />
+            <Display text={`Nível: ${level}`} />
             <div className="container-powers">
               <h2>Seus poderes</h2>
               <div className="powers-multplayer">

@@ -5,6 +5,7 @@ import { StyledTetrisWrapper } from './components/styles/StyledTetris';
 import { checkCollision, createStage } from './gameHelpers';
 import { usePlayer } from './hooks/usePlayer';
 import { useStage } from './hooks/useStage';
+import { useGameStatus } from './hooks/useGameStatus';
 import './App.css';
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
 
   //Player1
   const [player1, updatePlayer1Pos, resetPlayer1, player1Rotate] = usePlayer(setPowersStatusPlayer2);
-  const [stage1, setStage1] = useStage(player1, resetPlayer1);
+  const [stage1, setStage1, rowsCleared1] = useStage(player1, resetPlayer1);
+  const [score1, setScore1, rows1, setRows1, level1, setLevel1] = useGameStatus(rowsCleared1);
   const [powersQuantPlayer1, setPowersQuantPlayer1] = useState({
     blockRotate: 2,
     blockMove: 2,
@@ -40,7 +42,8 @@ function App() {
 
   //Player2
   const [player2, updatePlayer2Pos, resetPlayer2, player2Rotate] = usePlayer(setPowersStatusPlayer1);
-  const [stage2, setStage2] = useStage(player2, resetPlayer2);
+  const [stage2, setStage2, rowsCleared2] = useStage(player2, resetPlayer2);
+  const [score2, setScore2, rows2, setRows2, level2, setLevel2] = useGameStatus(rowsCleared2);
   const [powersQuantPlayer2, setPowersQuantPlayer2] = useState({
     blockRotate: 2,
     blockMove: 2,
@@ -59,17 +62,35 @@ function App() {
     setStage1(createStage());
     setDropTime1(velocity);
     resetPlayer1();
+    setScore1(0);
+    setLevel1(0);
+    setRows1(0);
     setGame1Over(false);
 
     // Reset everything
     setStage2(createStage());
     setDropTime2(velocity);
     resetPlayer2();
+    setScore2(0);
+    setLevel2(0);
+    setRows2(0);
     setGame2Over(false);
     }
   }, [startGame, setStage2, setStage1, resetPlayer1, resetPlayer2]);
 
   const drop = (player, stage, updatePlayerPos, setGameOver, setDropTime) => {
+    // Increase level when player has cleared 10 rows
+    if (rows1 > (level1 + 1) * 10) {
+      setLevel1(prev => prev + 1);
+      // Also increase speed
+      setDropTime(800 / (level1 + 1) + 200);
+    }
+    if (rows2 > (level2 + 1) * 10) {
+      setLevel2(prev => prev + 1);
+      // Also increase speed
+      setDropTime(800 / (level2 + 1) + 200);
+    }
+
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
@@ -148,13 +169,13 @@ function App() {
 
   const keyUp = ({ keyCode }) => {
     if (!game1Over) {
-      if (keyCode === 40) {
-        setDropTime1(velocity);
+      if (keyCode === 83) {
+        setDropTime1(velocity / (level1 + 1) + 200);
       }
     }
     if (!game2Over) {
-      if (keyCode === 83) {
-        setDropTime2(velocity);
+      if (keyCode === 40) {
+        setDropTime2(velocity / (level2 + 1) + 200);
       }
     }
   };
@@ -177,7 +198,10 @@ function App() {
             dropTime={dropTime1}
             drop={() => drop(player1, stage1, updatePlayer1Pos, setGame1Over, setDropTime1)}
             gameOver={game1Over}
-            currentPlayer={1} />}
+            currentPlayer={1}
+            score={score1}
+            rows={rows1}
+            level={level1} />}
           {nick2 && <Tetris
             powersQuant={powersQuantPlayer2}
             powersStatusOpponent={powersStatusPlayer1}
@@ -187,7 +211,10 @@ function App() {
             dropTime={dropTime2}
             drop={() => drop(player2, stage2, updatePlayer2Pos, setGame2Over, setDropTime2)}
             gameOver={game2Over}
-            currentPlayer={2} />}
+            currentPlayer={2}
+            score={score2}
+            rows={rows2}
+            level={level2} />}
         </StyledTetrisWrapper>
       ) : (
         <InitialPage setStartGame={setStartGame}

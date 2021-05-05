@@ -58,7 +58,7 @@ export const usePlayer = (setPowersStatusOpponent) => {
       tetromino: randomTetromino().shape,
       collided: false,
     });
-  }, []);
+  }, [setPowersStatusOpponent]);
 
   return [player, updatePlayerPos, resetPlayer, playerRotate];
 };

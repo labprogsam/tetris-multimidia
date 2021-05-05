@@ -3,7 +3,7 @@ import Lego from '../../Images/whh_tetrisone.png'
 import {useState} from 'react';
 import PopUp from '../PopUp';
 
-function InitialPage({ setStartGame, setPlayer1, setPlayer2, player1, player2 }) {
+function InitialPage({ setStartGame, setNick1, setNick2, nick1, nick2 }) {
   const [quantPlayers, setquantPlayers] = useState(1);
   const [oneChecked, setOneChecked] = useState(true);
   const [twoChecked, setTwoChecked] = useState(false);
@@ -21,7 +21,6 @@ function InitialPage({ setStartGame, setPlayer1, setPlayer2, player1, player2 })
   }
 
   const startButton = (e) =>{
-    console.log('dale')
     e.preventDefault();
     
     if (quantPlayers === 1){
@@ -55,11 +54,11 @@ function InitialPage({ setStartGame, setPlayer1, setPlayer2, player1, player2 })
                 ? <label htmlFor="">Nome do jogador</label>
                 : <label htmlFor="">Nome do jogador 1</label>
               }
-              <input value={player1} onChange={(e) => setPlayer1(e.target.value)}/>
+              <input value={nick1} onChange={(e) => setNick1(e.target.value)}/>
             </div>
             {quantPlayers === 2 && <div className="input">
               <label htmlFor="">Nome do jogador 2</label>
-              <input value={player2} onChange={(e) => setPlayer2(e.target.value)}/>
+              <input value={nick2} onChange={(e) => setNick2(e.target.value)}/>
             </div>}
           </div>
           <div className="quant-players">

@@ -3,7 +3,7 @@ import Lego from '../../Images/whh_tetrisone.png'
 import {useState} from 'react';
 import PopUp from '../PopUp';
 
-function InitialPage({ setStartGame, setNick1, setNick2, nick1, nick2 }) {
+function InitialPage({ setStartGame, setNick1, setNick2, nick1, nick2, setVelocity }) {
   const [quantPlayers, setquantPlayers] = useState(1);
   const [oneChecked, setOneChecked] = useState(true);
   const [twoChecked, setTwoChecked] = useState(false);
@@ -41,24 +41,21 @@ function InitialPage({ setStartGame, setNick1, setNick2, nick1, nick2 }) {
       <div className="contents-initial-page">
         <h1>CINTETRIX</h1>
         <img className="lego" src={Lego} alt="Peça de lego"/>
-        <form className="form" action="" onSubmit={(e) => startButton(e)}>
+        <form className="form" onSubmit={(e) => startButton(e)}>
           <div className="inputs-initial-page">
-
-            {/* Adicionando as estrelinhas */}
             <div className="stars"></div>
             <div className="stars2"></div>
-            {/* Fim das estrelinhas */}
 
             <div className="input">
               {quantPlayers === 1
-                ? <label htmlFor="">Nome do jogador</label>
-                : <label htmlFor="">Nome do jogador 1</label>
+                ? <label htmlFor="player1">Nome do jogador</label>
+                : <label htmlFor="player1">Nome do jogador 1</label>
               }
-              <input value={nick1} onChange={(e) => setNick1(e.target.value)}/>
+              <input required id="player1" value={nick1} onChange={(e) => setNick1(e.target.value)}/>
             </div>
             {quantPlayers === 2 && <div className="input">
-              <label htmlFor="">Nome do jogador 2</label>
-              <input value={nick2} onChange={(e) => setNick2(e.target.value)}/>
+              <label htmlFor="player2">Nome do jogador 2</label>
+              <input required id="player2" value={nick2} onChange={(e) => setNick2(e.target.value)}/>
             </div>}
           </div>
           <div className="quant-players">
@@ -80,8 +77,7 @@ function InitialPage({ setStartGame, setNick1, setNick2, nick1, nick2 }) {
           {/* Fim das estrelinhas */}
           </div>
           <button type="submit" className="start-button">START</button>
-          {/* <button onClick={() => setButtonPopUp(true)} className="start-button">START</button> */}
-          {buttonPopUp && <PopUp setOpen={setButtonPopUp}/>}
+          {buttonPopUp && <PopUp setOpen={setButtonPopUp} setVelocity={setVelocity} setStartGame={setStartGame} />}
         </form>
       </div>
     </div>

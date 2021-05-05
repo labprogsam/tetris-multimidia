@@ -67,9 +67,6 @@ function Tetris({ powersQuant, powersStatusOpponent, userName, currentPlayer, st
           </div>
         )}
       </aside>
-        {/* <button onClick={}>Não girar</button>
-        <button onClick={}>Bloquear movimento</button>
-        <button onClick={}>Aumentar Velocidade</button> */}
     </StyledTetris>
   );
 };
